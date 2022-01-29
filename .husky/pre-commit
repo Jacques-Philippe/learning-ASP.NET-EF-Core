@@ -1,0 +1,14 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+yarn lint-staged
+
+# echo "Prettify complete!"
+# echo "================================================"
+
+# Prevent commit on untracked or unstaged .cs file
+bash ./scripts/prevent-commit-for-untracked-or-unstaged-files.sh
+
+# echo "================================================"
+# echo ""
+yarn test
