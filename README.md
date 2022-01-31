@@ -13,12 +13,15 @@
 1. Install yarn
 1. Clone the repo
 1. Run `yarn prepare` (You may need to run `yarn install` before this)
+1.
 
 ## Working with the server
 
 You can build and run the server with hot-reload enabled with `yarn dev`. This runs `dotnet watch run --project src/[the REST API project]`. Building and running the server will output to console the endpoints the server is listening at.
 
 Connect to the server to investigate your endpoints with `httprepl [your endpoint]`
+
+Note that if you use hot reload, you should **ensure that the ASPNETCORE_ENVIRONMENT environment variable is set to Development**, otherwise it won't find the OpenAPI description properly. For an example of how to see this, check out the `package.json`'s `dev` script at project root.
 
 # Issues I ran into
 
