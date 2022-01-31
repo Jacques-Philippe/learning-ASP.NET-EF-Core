@@ -1,4 +1,4 @@
-namespace ContosoRESPAPI.Models;
+namespace ContosoRESTAPI.Models;
 
 public class Pizza
 {
