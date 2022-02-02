@@ -3,6 +3,9 @@ using ContosoRESTAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Get data source from user secrets
+var dataSource = builder.Configuration["Db:DataSource"];
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -17,7 +20,7 @@ builder.Services.AddSwaggerGen();
     - Specify that PizzaContext will use the Sqlite database provider
     - Define a Sqlite connection string pointing to a local ContosoPizza.db file
 */
-builder.Services.AddSqlite<PizzaContext>("Data Source=ContosoPizza.db");
+builder.Services.AddSqlite<PizzaContext>(dataSource);
 
 builder.Services.AddScoped<PizzaService>();
 

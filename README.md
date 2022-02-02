@@ -31,13 +31,37 @@ Note that if you use hot reload, you should **ensure that the ASPNETCORE_ENVIRON
 
 ## You may use Secret Manager for local dev
 
+### Enable secret storage
+
 Enable secret storage with the following command.
 
 ```
-dotnet user-secrets init
+dotnet user-secrets init --project <path-to-.csproj>
 ```
 
+The preceding command adds a `user secrets id` to your project, which subsequently allows your project to find the secrets you refer to in your code.
+
 Secrets created with the `Secret Manager` tool are stored at `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
+
+### Set a secret
+
+Set a project secret with the following
+
+```
+dotnet user-secrets set "secret name" "secret value" --project <path-to-.csproj>
+```
+
+### Access the secret from within the ASP.NET project
+
+```
+//In the ASP.NET Program.cs file,
+var builder = WebApplication.CreateBuilder(args);
+
+//Get data source from user secrets
+var secretValue = builder.Configuration["secret name"];
+
+
+```
 
 ## Use Azure Key Vault for apps in production
 
