@@ -2,13 +2,17 @@
 
 # Get started (dev)
 
-1. Install HTTP REPL
+1. Install `HTTP REPL`
    ```
    dotnet tool install -g Microsoft.dotnet-httprepl
    ```
-1. Install csharpier
+1. Install `csharpier`
    ```
    dotnet tool install csharpier -g
+   ```
+1. Install `dotnet-ef`
+   ```
+   dotnet tool install -g dotnet-ef
    ```
 1. Install yarn
 1. Clone the repo
@@ -22,6 +26,54 @@ You can build and run the server with hot-reload enabled with `yarn dev`. This r
 Connect to the server to investigate your endpoints with `httprepl [your endpoint]`
 
 Note that if you use hot reload, you should **ensure that the ASPNETCORE_ENVIRONMENT environment variable is set to Development**, otherwise it won't find the OpenAPI description properly. For an example of how to see this, check out the `package.json`'s `dev` script at project root.
+
+# On secrets
+
+## You may use Secret Manager for local dev
+
+Enable secret storage with the following command.
+
+```
+dotnet user-secrets init
+```
+
+Secrets created with the `Secret Manager` tool are stored at `~/.microsoft/usersecrets/<user_secrets_id>/secrets.json`
+
+## Use Azure Key Vault for apps in production
+
+# On databases
+
+## Tools
+
+`dotnet-ef` is a package we can use to manage our database migrations and scaffolding.
+
+## Tables
+
+Properties of type `DbSet<T>` represent tables which are to be created in the database.
+
+## Local dev vs using a network database
+
+`Sqlite` uses local database files (`.db` files), which is fine for development. However, as you scale the project, we're going to start using network databases, such as `PostgreSQL` or `SQL Server`.
+
+# Packages installed and why
+
+## ContosoRESTAPI
+
+### Microsoft.EntityFrameworkCore.Sqlite
+
+SQL database dependencies
+
+```
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 6.0.1
+```
+
+### Microsoft.EntityFrameworkCore.Design
+
+Entity management dependencies
+
+```
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.1
+```
 
 # Issues I ran into
 
