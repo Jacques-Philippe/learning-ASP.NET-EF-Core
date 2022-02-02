@@ -10,7 +10,8 @@
     "prettify": "dotnet csharpier src",
     "test": "dotnet test src",
     "prepare": "husky install",
-    "dev": "cross-env ASPNETCORE_ENVIRONMENT=Development dotnet watch run --project src/ContosoRESTAPI"
+    "dev": "cross-env ASPNETCORE_ENVIRONMENT=Development dotnet watch run --project src/ContosoRESTAPI",
+    "build":"dotnet build src"
   },
   "lint-staged": {
     "*.cs": "dotnet csharpier"
