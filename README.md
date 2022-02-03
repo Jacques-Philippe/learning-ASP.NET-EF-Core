@@ -101,11 +101,16 @@ dotnet ef database update --context YourContext --project <path-to-.csproj>
 
 Executing the above creates the `.db` file if it doesn't already exist, and applies the migrations to it.
 
+## Basics
+
+### Seeding the database
+
+⚠️ Be careful using database seeding in distributed systems, as this doesn't account for race conditions.  
+To seed the database, we create an initializer class to take the database Context and populate it. In our case, we create static class [`DbInitializer`](src/ContosoRESTAPI/Data/DbInitializer.cs)
+
 ### Devving with Sqlite on VS code
 
 Install the `vscode-sqlite` extension via VS Code's extensions interface. Check out [the extension's repo](https://github.com/AlexCovizzi/vscode-sqlite) for more instructions on its use.
-
-## Basics
 
 ### Tools
 
