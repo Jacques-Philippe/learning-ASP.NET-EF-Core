@@ -101,6 +101,20 @@ dotnet ef database update --context YourContext --project <path-to-.csproj>
 
 Executing the above creates the `.db` file if it doesn't already exist, and applies the migrations to it.
 
+### Scaffold
+
+It's possible to create Model classes from .db files.
+
+```
+dotnet ef dbcontext scaffold "Data Source=./Promotions/Promotions.db" Microsoft.EntityFrameworkCore.Sqlite --context-dir ./Data/ --output-dir ./Models
+```
+
+The above will create a `Models/Coupon` class and `Data/PromotionsContext` from the provided `Promotions.db` file. Notice, the above specifies:
+
+- to scaffold a `DbContext` and model classes using the provided connection string.
+- specifies the framework database provider to use (`Microsoft.EntityFrameworkCore.Sqlite`).
+- specifies directories for the resulting `DbContext` and model classes.
+
 ## Basics
 
 ### Seeding the database
