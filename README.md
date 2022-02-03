@@ -141,6 +141,10 @@ Entity management dependencies
 dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.1
 ```
 
+# Decimal vs float
+
+In summary, `decimal` is an exact value, whereas `float` is a more approximate value. So for things like money, use `decimal`, and for more apprximate scientific values, use `float`.
+
 # Issues I ran into
 
 ## "Unable to find an OpenAPI description" on HTTPREPL connect
