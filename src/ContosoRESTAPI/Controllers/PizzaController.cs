@@ -50,25 +50,25 @@ public class PizzaController : ControllerBase
     }
 
     [HttpPut("{id}/add-topping")]
-    public IActionResult AddTopping(int pizzaId, int toppingId)
+    public IActionResult AddTopping(int id, int toppingId)
     {
-        var pizza = _PizzaService.GetById(pizzaId);
+        var pizza = _PizzaService.GetById(id);
         if (pizza is not null)
         {
             //TODO check topping exists?
-            _PizzaService.AddTopping(pizzaId, toppingId);
+            _PizzaService.AddTopping(id, toppingId);
             return NoContent();
         }
         return BadRequest();
     }
 
     [HttpPut("{id}/update-sauce")]
-    public IActionResult UpdateSauce(int pizzaId, int sauceId)
+    public IActionResult UpdateSauce(int id, int sauceId)
     {
-        var pizza = _PizzaService.GetById(pizzaId);
+        var pizza = _PizzaService.GetById(id);
         if (pizza is not null)
         {
-            _PizzaService.UpdateSauce(pizzaId, sauceId);
+            _PizzaService.UpdateSauce(id, sauceId);
             return NoContent();
         }
         return BadRequest();
