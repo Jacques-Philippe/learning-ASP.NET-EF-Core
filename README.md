@@ -160,3 +160,7 @@ What fixed the issue for me:
 ```
 dotnet dev-certs https --trust
 ```
+
+## Tables aren't created on Database.EnsureCreated()
+
+For whatever reason, `Database.EnsureCreated()` wasn't creating the seeded database, and [this](https://stackoverflow.com/a/68796048) turned out to be the fix.

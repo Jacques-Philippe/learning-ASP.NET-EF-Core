@@ -7,16 +7,17 @@ public static class Extensions
     /// </summary>
     public static void CreateDbIfNotExists(this IHost host)
     {
-        using (var scope = host.Services.CreateScope())
         {
-            var services = scope.ServiceProvider;
-            var context = services.GetRequiredService<PizzaContext>();
-            // EnsureCreated creates a new database if one doesn't exist.
-            // The new database is NOT configured for migrations.
-            bool databaseExists = context.Database.EnsureCreated();
-            if (databaseExists)
+            using (var scope = host.Services.CreateScope())
             {
-                DbInitializer.Initialize(context);
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<PizzaContext>();
+                // // https://stackoverflow.com/a/68796048
+                // context.Database.EnsureDeleted();
+                if (context.Database.EnsureCreated())
+                {
+                    DbInitializer.Initialize(context);
+                }
             }
         }
     }

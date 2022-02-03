@@ -4,11 +4,9 @@ namespace ContosoRESTAPI.Data;
 
 public static class DbInitializer
 {
-    public static void Initialize(PizzaContext context)
+    public async static void Initialize(PizzaContext context)
     {
-        bool databaseIsAlreadySeeded =
-            context.Pizzas.Any() && context.Toppings.Any() && context.Sauces.Any();
-        if (databaseIsAlreadySeeded)
+        if (context.Pizzas.Any() && context.Toppings.Any() && context.Sauces.Any())
             return;
 
         //Toppings
@@ -51,7 +49,7 @@ public static class DbInitializer
             }
         };
 
-        context.Pizzas.AddRange(pizzas);
+        await context.Pizzas.AddRangeAsync(pizzas);
         context.SaveChanges();
     }
 }
