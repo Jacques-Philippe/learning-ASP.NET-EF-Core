@@ -2,6 +2,7 @@ using ContosoRESTAPI.Data;
 using ContosoRESTAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Logging.AddConsole();
 
 //Get data source from user secrets
 var dataSource = builder.Configuration["Db:DataSource"];

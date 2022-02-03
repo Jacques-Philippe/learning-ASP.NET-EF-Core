@@ -16,8 +16,8 @@
    ```
 1. Install yarn
 1. Clone the repo
-1. Run `yarn prepare` (You may need to run `yarn install` before this)
-1.
+1. Run `yarn prepare` (You may need to run `yarn install` before this).  
+   This will install all husky hooks.
 
 ## Working with the server
 
@@ -51,6 +51,14 @@ Set a project secret with the following
 dotnet user-secrets set "secret name" "secret value" --project <path-to-.csproj>
 ```
 
+In our case we have the following
+
+```
+dotnet user-secrets set "Db:DataSource" "Data Source=ContosoPizza.db" --project ./src/ContosoRESTAPI
+```
+
+The above will ensure our db is created in a file named `ContosoPizza.db` at project root, when we apply our migrations
+
 ### Access the secret from within the ASP.NET project
 
 ```
@@ -59,23 +67,57 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Get data source from user secrets
 var secretValue = builder.Configuration["secret name"];
+```
 
+### List project secrets
 
+Use the following command to list project secrets
+
+```
+dotnet user-secrets list --project <path-to-your-.csproj>
 ```
 
 ## Use Azure Key Vault for apps in production
 
 # On databases
 
-## Tools
+## Commands
+
+### Create a migration
+
+In the following, `Context` refers to your data model, so for instance in this project this is a reference to the [`PizzaContext` class](/src/ContosoRESTAPI/Data/PizzaContext.cs), which inherits from DbContext.
+
+```
+dotnet ef migrations add "migration name" --context YourContext --project <path-to-.csproj>
+```
+
+After executing the above, a `Migrations` directory is created at project root.
+
+### Apply migrations
+
+```
+dotnet ef database update --context YourContext --project <path-to-.csproj>
+```
+
+Executing the above creates the `.db` file if it doesn't already exist, and applies the migrations to it.
+
+### Devving with Sqlite on VS code
+
+Install the `vscode-sqlite` extension via VS Code's extensions interface. Check out [the extension's repo](https://github.com/AlexCovizzi/vscode-sqlite) for more instructions on its use.
+
+## Basics
+
+### Tools
 
 `dotnet-ef` is a package we can use to manage our database migrations and scaffolding.
 
-## Tables
+### Tables
 
-Properties of type `DbSet<T>` represent tables which are to be created in the database.
+- Properties of type `DbSet<T>` represent tables which are to be created in the database.
+- EF Core's primary key and foreign key constraint naming conventions are `PK_<Primary key property>` and `FK_<Dependent entity>_<Principal entity>_<Foreign key property>`, respectively. The `<Dependent entity>` and `<Principal entity>` placeholders correspond to the entity class names.
+- As is true with ASP.NET Core MVC, EF Core adopts a convention over configuration philosophy. EF Core conventions shorten development time by inferring the developer's intent. For example, a property named `Id` or `<entity name>Id` is inferred to be the generated table's primary key. If you choose not to adopt the naming convention, the property must be annotated with the `[Key]` attribute.
 
-## Local dev vs using a network database
+### Local dev vs using a network database
 
 `Sqlite` uses local database files (`.db` files), which is fine for development. However, as you scale the project, we're going to start using network databases, such as `PostgreSQL` or `SQL Server`.
 
