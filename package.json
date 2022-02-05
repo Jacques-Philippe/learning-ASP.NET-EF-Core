@@ -7,13 +7,13 @@
     "lint-staged": "^12.2.0"
   },
   "scripts": {
-    "prettify": "dotnet csharpier src",
+    "prettify": "dotnet tool run dotnet-csharpier src",
     "test": "dotnet test src",
     "prepare": "husky install",
     "dev": "cross-env ASPNETCORE_ENVIRONMENT=Development dotnet watch run --project src/ContosoRESTAPI",
     "build":"dotnet build src"
   },
   "lint-staged": {
-    "*.cs": "dotnet csharpier"
+    "*.cs": "dotnet tool run dotnet-csharpier"
   }
 }

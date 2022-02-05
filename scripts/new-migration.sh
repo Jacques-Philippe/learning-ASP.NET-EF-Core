@@ -12,5 +12,5 @@ then
 else
     echo "✔ Received name $name. Creating migration..."
     echo "Using context PizzaContext 🍕"
-    dotnet ef migrations add $name --context PizzaContext --project src/ContosoRESTAPI
+    dotnet tool run dotnet-ef migrations add $name --context PizzaContext --project src/ContosoRESTAPI
 fi
