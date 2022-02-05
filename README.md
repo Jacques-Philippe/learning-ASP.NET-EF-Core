@@ -1,4 +1,4 @@
-![Build & Test workflow](https://github.com/Jacques-Philippe/[REPO NAME HERE]/actions/workflows/unit-tests.yml/badge.svg)
+![Build & Test workflow](https://github.com/Jacques-Philippe/learning-ASP.NET-EF-Core/actions/workflows/unit-tests.yml/badge.svg)
 
 # Get started (dev)
 
