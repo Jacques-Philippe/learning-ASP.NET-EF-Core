@@ -2,17 +2,9 @@
 
 # Get started (dev)
 
-1. Install `HTTP REPL`
+1. Install dotnet tools (`HTTP REPL`, `csharpier`, `dotnet-ef`)
    ```
-   dotnet tool install -g Microsoft.dotnet-httprepl
-   ```
-1. Install `csharpier`
-   ```
-   dotnet tool install csharpier -g
-   ```
-1. Install `dotnet-ef`
-   ```
-   dotnet tool install -g dotnet-ef
+   ./scripts/install-dotnet-tools.sh
    ```
 1. Install yarn
 1. Clone the repo
