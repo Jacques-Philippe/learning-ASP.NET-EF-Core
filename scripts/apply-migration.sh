@@ -3,4 +3,4 @@
 # Apply the migrations to the database
 echo "Applying migrations to the database..."
 echo "Using context PizzaContext 🍕"
-dotnet ef database update --context PizzaContext --project src/ContosoRESTAPI
+dotnet tool run dotnet-ef database update --context PizzaContext --project src/ContosoRESTAPI
